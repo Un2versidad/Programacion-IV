@@ -2,7 +2,7 @@
 
 ```markdown
 +-------------------+
-| Profesore         |
+| Profesores        |
 |-------------------|
 | PK id             | <---+
 |    nombre         |     |
