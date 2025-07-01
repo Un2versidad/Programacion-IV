@@ -111,8 +111,6 @@ python main.py
 
 3️⃣ ¡Disfruta tu biblioteca personal gestionada con MariaDB!
 
----
-
 ## ❤️ Créditos
 
 - SQLAlchemy ORM  
