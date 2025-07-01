@@ -13,6 +13,10 @@ Aplicación de línea de comandos para gestionar tu biblioteca personal, almacen
 - Buscar libros por título, autor o género  
 - Salir del programa de forma controlada  
 
+## 📸 Screenshot
+
+![image](https://github.com/user-attachments/assets/570cd5c0-daa5-44e1-ae20-727d35c2fd52)
+
 ## 🛠 Requisitos
 
 - Python 3.8+  
@@ -55,10 +59,6 @@ Sigue las indicaciones en pantalla para ingresar datos y realizar las operacione
 - Validación de campos obligatorios al agregar y actualizar libros.  
 - Manejo de errores en operaciones con SQLite, mostrando mensajes en caso de fallos.  
 - Validación de entradas numéricas para seleccionar opciones y IDs.  
-
-## 📸 Capturas
-
-![image](https://github.com/user-attachments/assets/570cd5c0-daa5-44e1-ae20-727d35c2fd52)
 
 ## 🧑‍💻 Código modularizado
 
