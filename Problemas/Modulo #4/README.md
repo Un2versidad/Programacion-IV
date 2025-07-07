@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/1f118c9d-52a2-42c9-9180-b9f897c0ff2e)
+
 # Biblioteca Personal - Sistema de Gestión de Libros
 
 Una aplicación de línea de comandos para gestionar una biblioteca personal utilizando MongoDB como base de datos.
