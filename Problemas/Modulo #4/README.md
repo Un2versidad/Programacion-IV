@@ -74,7 +74,7 @@ Estructura de un documento de libro en MongoDB:
 
 ```json
 {
-  "_id": ObjectId("60a7c8c8c9d4b2d7c8a1b2c3"),
+  "_id": "60a7c8c8c9d4b2d7c8a1b2c3",
   "titulo": "Cien años de soledad",
   "autor": "Gabriel García Márquez",
   "genero": "Realismo mágico",
