@@ -3,29 +3,29 @@ import pymongo
 import colorama
 import tabulate
 
-# Initialize Mongo_DB client with connection URI
+# Inicializar el cliente MongoDB con la URI de conexión
 uri = "mongodb://admin:admin123@localhost:27017"
 
 try:
-    # Connect to MongoDB
+    # Conectarse a MongoDB
     client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=5000)
     client.admin.command('ping')
     print(colorama.Fore.GREEN + "🛜 Pong! Connected to MongoDB successfully.")
 
-    # Access the database and collection
+    # Acceder a la base de datos y a la colección
     db = client['refugio']
     collection = client['animales']
 
-    # Create a new collection if it doesn't exist
+    # Crea una nueva colección si no existe
     if 'animales' not in db.list_collection_names():
         collection = db.create_collection('animales')
     else:
         collection = db['animales']
         print("✔️ Collection 'animales' is ready.")
 
-    # Functions for CRUD operations (Agregar, Leer, Actualizar, Eliminar)
+    # Funciones para operaciones CRUD  (Agregar, Leer, Actualizar, Eliminar)
 
-    # Function to add an animal
+    # Funcion para añadir un animal
     def agregar_animal():
         animal = {
             "nombre": input("Nombre del animal: "),
@@ -37,7 +37,7 @@ try:
         result = collection.insert_one(animal)
         print(f"Animal agregado con ID: {result.inserted_id}")
 
-    # Function to show an animal by ID
+    # Funcion para mostrar animal por ID
     def mostrar_todos_los_animales():
         animales = list(collection.find())
         if not animales:
@@ -56,7 +56,7 @@ try:
         headers = ["ID", "Nombre", "Especie", "Edad", "Continente", "Peligro de extinción"]
         print(tabulate.tabulate(tabla, headers, tablefmt="fancy_grid"))
 
-    # Function to update an animal by ID
+    # Funcion para actualizar animal por el ID
     def actualizar_animal():
         animal_id = input("ID del animal a actualizar: ")
         update_fields = {}
@@ -77,7 +77,7 @@ try:
         else:
             print(f"No se encontró un animal con ID {animal_id} o no se realizaron cambios.")
 
-    # Function to delete an animal by ID
+    # Funcion para eliminar animal por el ID
     def eliminar_animal():
         animal_id = input("ID del animal a eliminar: ")
         result = collection.delete_one({'_id': pymongo.ObjectId(animal_id)})
@@ -86,7 +86,7 @@ try:
         else:
             print(f"No se encontró un animal con ID {animal_id}.")
 
-    # Main menu for CRUD operations
+    # Menu Principal con las Operaciones de CRUD
     while True:
         print(colorama.Fore.WHITE + "\nMenú de operaciones CRUD:" + colorama.Style.RESET_ALL)
         menu_items = [
