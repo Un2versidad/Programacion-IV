@@ -1,0 +1,5 @@
+pymongo>=4.0.0
+colorama>=0.4.4
+tabulate>=0.8.9
+pyfiglet>=0.8.0
+tqdm>=4.62.0
