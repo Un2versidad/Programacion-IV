@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Libros</title>
+    <link rel="stylesheet" href="/static/estilos.css">
+</head>
+<body>
+    <h1>Buscar Libros</h1>
+    <form method="GET">
+        <input type="text" name="consulta" placeholder="Buscar por título, autor o género" value="{{ consulta }}">
+        <button type="submit">Buscar</button>
+    </form>
+    <div class="center-btn">
+        <a href="/" class="btn btn-back">Volver a la Biblioteca</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Género</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.genero }}</td>
+                <td>{{ libro.estado }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

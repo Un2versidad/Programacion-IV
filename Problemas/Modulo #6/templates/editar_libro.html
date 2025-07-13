@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Libro</title>
+    <link rel="stylesheet" href="/static/estilos.css">
+</head>
+<body>
+    <h1>Editar Libro</h1>
+    <form method="POST">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" value="{{ libro.titulo }}" required>
+
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" name="autor" value="{{ libro.autor }}" required>
+
+        <label for="genero">Género:</label>
+        <select id="genero" name="genero">
+            <option value="Novela" {% if libro.genero == 'Novela' %}selected{% endif %}>Novela</option>
+            <option value="Ciencia Ficción" {% if libro.genero == 'Ciencia Ficción' %}selected{% endif %}>Ciencia Ficción</option>
+            <option value="Fantasía" {% if libro.genero == 'Fantasía' %}selected{% endif %}>Fantasía</option>
+            <option value="Misterio" {% if libro.genero == 'Misterio' %}selected{% endif %}>Misterio</option>
+            <option value="Romance" {% if libro.genero == 'Romance' %}selected{% endif %}>Romance</option>
+            <option value="Historia" {% if libro.genero == 'Historia' %}selected{% endif %}>Historia</option>
+            <option value="Biografía" {% if libro.genero == 'Biografía' %}selected{% endif %}>Biografía</option>
+            <option value="Poesía" {% if libro.genero == 'Poesía' %}selected{% endif %}>Poesía</option>
+            <option value="Aventura" {% if libro.genero == 'Aventura' %}selected{% endif %}>Aventura</option>
+            <option value="Thriller" {% if libro.genero == 'Thriller' %}selected{% endif %}>Thriller</option>
+            <option value="Terror" {% if libro.genero == 'Terror' %}selected{% endif %}>Terror</option>
+            <option value="Educativo" {% if libro.genero == 'Educativo' %}selected{% endif %}>Educativo</option>
+        </select>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+            <option value="Leído" {% if libro.estado == 'Leído' %}selected{% endif %}>Leído</option>
+            <option value="Por leer" {% if libro.estado == 'Por leer' %}selected{% endif %}>Por leer</option>
+            <option value="Leyendo" {% if libro.estado == 'Leyendo' %}selected{% endif %}>Leyendo</option>
+            <option value="Abandonado" {% if libro.estado == 'Abandonado' %}selected{% endif %}>Abandonado</option>
+            <option value="Releído" {% if libro.estado == 'Releído' %}selected{% endif %}>Releído</option>
+            <option value="En pausa" {% if libro.estado == 'En pausa' %}selected{% endif %}>En pausa</option>
+        </select>
+
+        <button type="submit">Actualizar Libro</button>
+    </form>
+    <div class="center-btn">
+        <a href="/" class="btn btn-back">Volver a la Biblioteca</a>
+    </div>
+</body>
+</html>
