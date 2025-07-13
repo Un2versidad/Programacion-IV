@@ -1,3 +1,4 @@
+<img width="1656" height="602" alt="image" src="https://github.com/user-attachments/assets/36463146-92e2-4ba0-a1a5-70dc843ead2e" />
 
 <div align="center">
   <img src="https://img.shields.io/badge/Python-3.8+-blue.svg" alt="Python 3.8+">
