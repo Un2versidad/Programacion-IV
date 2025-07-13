@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Biblioteca Personal{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Mi Biblioteca</h1>
+
+{% if libros %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Género</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                <tr>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.autor }}</td>
+                    <td>{{ libro.genero if libro.genero else 'No especificado' }}</td>
+                    <td>{{ libro.estado if libro.estado else 'No especificado' }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_libro', libro_id=libro.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                        <a href="{{ url_for('eliminar_libro', libro_id=libro.id) }}" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        No hay libros en tu biblioteca. ¡Agrega uno ahora!
+    </div>
+{% endif %}
+
+<a href="{{ url_for('agregar_libro') }}" class="btn btn-success mt-3">Agregar Nuevo Libro</a>
+{% endblock %}

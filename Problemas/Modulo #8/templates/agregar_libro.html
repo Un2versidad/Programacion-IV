@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Libro - Biblioteca Personal{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Agregar Nuevo Libro</h1>
+
+<form method="POST" action="{{ url_for('agregar_libro') }}">
+    <div class="mb-3">
+        <label for="titulo" class="form-label">Título *</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="autor" class="form-label">Autor *</label>
+        <input type="text" class="form-control" id="autor" name="autor" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="genero" class="form-label">Género</label>
+        <select class="form-select" id="genero" name="genero">
+            <option value="">Seleccionar género</option>
+            {% for genero in ['Ficción', 'No Ficción', 'Fantasía', 'Ciencia Ficción', 'Misterio', 'Romance', 'Biografía', 'Historia', 'Otro'] %}
+                <option value="{{ genero }}">{{ genero }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="estado" class="form-label">Estado</label>
+        <select class="form-select" id="estado" name="estado">
+            {% for estado in ['No leído', 'Leyendo', 'Leído'] %}
+                <option value="{{ estado }}">{{ estado }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+{% endblock %}
