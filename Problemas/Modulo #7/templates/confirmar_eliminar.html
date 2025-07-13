@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Confirmar Eliminación - Biblioteca Personal{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header bg-danger text-white">
+        <h2 class="mb-0">Confirmar Eliminación</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">¿Estás seguro que deseas eliminar el siguiente libro?</p>
+
+        <div class="alert alert-secondary">
+            <h3>{{ libro.titulo }}</h3>
+            <p><strong>Autor:</strong> {{ libro.autor }}</p>
+            {% if libro.genero %}
+                <p><strong>Género:</strong> {{ libro.genero }}</p>
+            {% endif %}
+            {% if libro.estado %}
+                <p><strong>Estado:</strong> {{ libro.estado }}</p>
+            {% endif %}
+        </div>
+
+        <p class="text-danger"><strong>Esta acción no se puede deshacer.</strong></p>
+
+        <div class="mt-4">
+            <a href="{{ url_for('eliminar_libro', libro_id=libro_id, confirmar='true') }}" class="btn btn-danger">Sí, Eliminar</a>
+            <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
