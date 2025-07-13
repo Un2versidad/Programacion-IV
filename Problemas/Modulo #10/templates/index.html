@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Personal</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .libro { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+        .flash { padding: 10px; margin-bottom: 15px; border-radius: 4px; }
+        .flash.error { background-color: #ffdddd; border: 1px solid #f44336; }
+        .flash.success { background-color: #ddffdd; border: 1px solid #4CAF50; }
+        .btn { display: inline-block; padding: 6px 12px; text-decoration: none; background-color: #4CAF50; color: white; border-radius: 4px; }
+        .btn-danger { background-color: #f44336; }
+        .btn-info { background-color: #2196F3; }
+    </style>
+</head>
+<body>
+    <h1>Mi Biblioteca Personal</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <a href="{{ url_for('agregar_libro') }}" class="btn">Agregar Nuevo Libro</a>
+
+    <h2>Mis Libros</h2>
+    {% if libros %}
+        {% for libro in libros %}
+            <div class="libro">
+                <h3>{{ libro.titulo }}</h3>
+                <p><strong>Autor:</strong> {{ libro.autor }}</p>
+                <p><strong>Año:</strong> {{ libro.año }}</p>
+                <div>
+                    <a href="{{ url_for('ver_libro', id_libro=libro.id) }}" class="btn btn-info">Ver Detalles</a>
+                    <a href="{{ url_for('editar_libro', id_libro=libro.id) }}" class="btn">Editar</a>
+                    <form method="POST" action="{{ url_for('eliminar_libro', id_libro=libro.id) }}" style="display: inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este libro?')">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay libros en la biblioteca. ¡Agrega uno!</p>
+    {% endif %}
+</body>
+</html>

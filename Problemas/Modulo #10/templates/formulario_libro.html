@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ accion }} Libro</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .btn { display: inline-block; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-secondary { background-color: #607d8b; }
+        .flash { padding: 10px; margin-bottom: 15px; border-radius: 4px; }
+        .flash.error { background-color: #ffdddd; border: 1px solid #f44336; }
+    </style>
+</head>
+<body>
+    <h1>{{ accion }} Libro</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" value="{{ libro.titulo if libro else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="autor">Autor:</label>
+            <input type="text" id="autor" name="autor" value="{{ libro.autor if libro else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="año">Año de publicación:</label>
+            <input type="number" id="año" name="año" value="{{ libro.año if libro else '' }}" required>
+        </div>
+
+        <div>
+            <button type="submit" class="btn">{{ accion }} Libro</button>
+            <a href="{{ url_for('inicio') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>
