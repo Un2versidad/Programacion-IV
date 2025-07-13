@@ -94,4 +94,4 @@ class RegistroVacunacion(BaseModel):
 
 ## 📝 Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](https://github.com/Un2versidad/Programacion-IV/blob/main/LICENSE) para más detalles.
