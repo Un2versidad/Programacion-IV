@@ -49,11 +49,13 @@ Sigue estos pasos para instalar y ejecutar el sistema en tu máquina.
    ```
 
 2. **Instala las Dependencias**:
+
    ```bash
    pip install colorama tabulate matplotlib
    ```
 
 3. **Ejecuta la Aplicación**:
+
    ```bash
    python main.py
    ```
@@ -63,46 +65,56 @@ Sigue estos pasos para instalar y ejecutar el sistema en tu máquina.
 ## 🛠️ Uso
 
 1. **Iniciar la Aplicación**:
-   - Ejecuta `python app.py` para iniciar el sistema.
-   - Verás un mensaje de bienvenida y el menú principal.
+
+   * Ejecuta `python app.py` para iniciar el sistema.
+   * Verás un mensaje de bienvenida y el menú principal.
 
 2. **Menú Principal**:
-   <div align="center">
-     <img src="https://via.placeholder.com/600x200?text=Men%C3%BA+Principal" alt="Menú Principal">
-   </div>
-   - Selecciona una opción (1-12) ingresando el número correspondiente.
-   - Las opciones incluyen:
-     - **1**: Registrar un nuevo artículo (nombre, categoría, cantidad, precio, descripción).
-     - **2**: Buscar artículos por nombre o categoría.
-     - **3**: Editar un artículo existente.
-     - **4**: Eliminar un artículo.
-     - **5**: Listar todos los artículos.
-     - **6**: Exportar artículos a CSV.
-     - **7**: Registrar un gasto.
-     - **8**: Ver todos los gastos.
-     - **9**: Ver gastos por categoría.
-     - **10**: Visualizar gráficos de gastos.
-     - **11**: Generar reporte detallado.
-     - **12**: Salir.
+
+<div align="left">
+  <img src="https://github.com/user-attachments/assets/f35d51e2-a9dc-4386-8b7e-f1c605a23b4c" width="400" height="400" alt="Menú Principal">
+</div>
+
+### Opciones Disponibles
+
+| Opción | Descripción                                                                     |
+| ------ | ------------------------------------------------------------------------------- |
+| **1**  | Registrar un nuevo artículo (nombre, categoría, cantidad, precio, descripción). |
+| **2**  | Buscar artículos por nombre o categoría.                                        |
+| **3**  | Editar un artículo existente.                                                   |
+| **4**  | Eliminar un artículo.                                                           |
+| **5**  | Listar todos los artículos.                                                     |
+| **6**  | Exportar artículos a CSV.                                                       |
+| **7**  | Registrar un gasto.                                                             |
+| **8**  | Ver todos los gastos.                                                           |
+| **9**  | Ver gastos por categoría.                                                       |
+| **10** | Visualizar gráficos de gastos.                                                  |
+| **11** | Generar reporte detallado.                                                      |
+| **12** | Salir.                                                                          |
 
 3. **Ejemplo de Interacción**:
-   - **Registrar un Artículo**:
-     ```
-     Nombre del artículo: Laptop
-     Categoría: Electrónica
-     Cantidad: 1
-     Precio unitario: $1000
-     Descripción (opcional): Laptop nueva
-     ✅ Artículo registrado exitosamente con ID: 1
-     ```
-   - **Visualizar Gastos**:
-     - Genera gráficos de línea y pastel mostrando la evolución y distribución de los gastos.
+
+* **Registrar un Artículo**:
+
+  ```
+  Nombre del artículo: Laptop
+  Categoría: Electrónica
+  Cantidad: 1
+  Precio unitario: $1000
+  Descripción (opcional): Laptop nueva
+  ✅ Artículo registrado exitosamente con ID: 1
+  ```
+
+* **Visualizar Gastos**:
+
+  * Genera gráficos de línea y pastel mostrando la evolución y distribución de los gastos.
 
 ---
 
 ## 📊 Ejemplo de Salida
 
 ### Tabla de Artículos
+
 ```
 ╒══════╤══════════╤══════════════╤═══════════╤═══════════════╤══════════╕
 │ ID   │ Nombre   │ Categoría    │ Cantidad  │ Precio Unit.  │ Total    │
@@ -113,11 +125,6 @@ Sigue estos pasos para instalar y ejecutar el sistema en tu máquina.
 TOTAL PRESUPUESTO: $1,100.00
 ```
 
-### Gráficos de Gastos
-<div align="center">
-  <img src="https://via.placeholder.com/600x300?text=Gr%C3%A1fico+de+Gastos" alt="Gráficos de Gastos">
-</div>
-
 ---
 
 ## 🗄️ Estructura del Proyecto
@@ -125,9 +132,9 @@ TOTAL PRESUPUESTO: $1,100.00
 ```plaintext
 sistema-gestion-presupuesto/
 ├── app.py                # Código principal del sistema
-├── presupuesto.db         # Base de datos SQLite (generada al ejecutar)
-├── README.md              # Este archivo
-└── requirements.txt       # Lista de dependencias
+├── presupuesto.db        # Base de datos SQLite (generada al ejecutar)
+├── README.md             # Este archivo
+└── requirements.txt      # Lista de dependencias
 ```
 
 ---
@@ -140,11 +147,11 @@ sistema-gestion-presupuesto/
   <img src="https://img.shields.io/badge/Matplotlib-11557C?logo=python&logoColor=white" alt="Matplotlib">
 </div>
 
-- **Python**: Lenguaje principal para la lógica de la aplicación.
-- **SQLite**: Base de datos ligera para almacenar artículos y gastos.
-- **Matplotlib**: Generación de gráficos de visualización.
-- **Colorama**: Estilización de la consola con colores.
-- **Tabulate**: Formateo de tablas en la consola.
+* **Python**: Lenguaje principal para la lógica de la aplicación.
+* **SQLite**: Base de datos ligera para almacenar artículos y gastos.
+* **Matplotlib**: Generación de gráficos de visualización.
+* **Colorama**: Estilización de la consola con colores.
+* **Tabulate**: Formateo de tablas en la consola.
 
 ---
 
@@ -152,30 +159,32 @@ sistema-gestion-presupuesto/
 
 La aplicación crea automáticamente un archivo `presupuesto.db` con dos tablas:
 
-- **articulos**:
-  - `id` (INTEGER, PRIMARY KEY, AUTOINCREMENT)
-  - `nombre` (TEXT, NOT NULL)
-  - `categoria` (TEXT, NOT NULL)
-  - `cantidad` (REAL, NOT NULL)
-  - `precio_unitario` (REAL, NOT NULL)
-  - `descripcion` (TEXT)
-  - `creado_en` (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
-  - `actualizado_en` (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
+* **articulos**:
 
-- **gastos**:
-  - `id` (INTEGER, PRIMARY KEY, AUTOINCREMENT)
-  - `descripcion` (TEXT, NOT NULL)
-  - `monto` (REAL, NOT NULL)
-  - `categoria` (TEXT, NOT NULL)
-  - `fecha` (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
+  * `id` (INTEGER, PRIMARY KEY, AUTOINCREMENT)
+  * `nombre` (TEXT, NOT NULL)
+  * `categoria` (TEXT, NOT NULL)
+  * `cantidad` (REAL, NOT NULL)
+  * `precio_unitario` (REAL, NOT NULL)
+  * `descripcion` (TEXT)
+  * `creado_en` (TIMESTAMP, DEFAULT CURRENT\_TIMESTAMP)
+  * `actualizado_en` (TIMESTAMP, DEFAULT CURRENT\_TIMESTAMP)
+
+* **gastos**:
+
+  * `id` (INTEGER, PRIMARY KEY, AUTOINCREMENT)
+  * `descripcion` (TEXT, NOT NULL)
+  * `monto` (REAL, NOT NULL)
+  * `categoria` (TEXT, NOT NULL)
+  * `fecha` (TIMESTAMP, DEFAULT CURRENT\_TIMESTAMP)
 
 ---
 
 ## 🐛 Manejo de Errores
 
-- **Errores de Base de Datos**: Capturados y mostrados en rojo con mensajes claros.
-- **Validación de Entrada**: Asegura que los datos ingresados sean válidos (no vacíos, números positivos, etc.).
-- **Interrupción del Programa**: Maneja `KeyboardInterrupt` para una salida limpia.
+* **Errores de Base de Datos**: Capturados y mostrados en rojo con mensajes claros.
+* **Validación de Entrada**: Asegura que los datos ingresados sean válidos (no vacíos, números positivos, etc.).
+* **Interrupción del Programa**: Maneja `KeyboardInterrupt` para una salida limpia.
 
 ---
 
