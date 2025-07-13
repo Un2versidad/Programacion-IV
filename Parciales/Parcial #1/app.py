@@ -76,10 +76,11 @@ class BaseDeDatos:
         """Busca artículos por nombre (coincidencia parcial)"""
         try:
             self.cursor.execute('''
-                                SELECT *
-                                FROM articulos
-                                WHERE nombre LIKE ?
-                                ''', (f'%{nombre}%',))
+                    SELECT *
+                    FROM articulos
+                    WHERE nombre LIKE ?
+            ''', (f'%{nombre}%',))
+            
             return self.cursor.fetchall()
         except sqlite3.Error as e:
             print(f"{Fore.RED}Error al buscar artículos por nombre: {e}")
@@ -89,10 +90,11 @@ class BaseDeDatos:
         """Busca artículos por categoría (coincidencia parcial)"""
         try:
             self.cursor.execute('''
-                                SELECT *
-                                FROM articulos
-                                WHERE categoria LIKE ?
-                                ''', (f'%{categoria}%',))
+                    SELECT *
+                    FROM articulos
+                    WHERE categoria LIKE ?
+            ''', (f'%{categoria}%',))
+            
             return self.cursor.fetchall()
         except sqlite3.Error as e:
             print(f"{Fore.RED}Error al buscar artículos por categoría: {e}")
@@ -120,16 +122,15 @@ class BaseDeDatos:
         """Actualiza un artículo existente"""
         try:
             self.cursor.execute('''
-                                UPDATE articulos
-                                SET nombre          = ?,
-                                    categoria       = ?,
-                                    cantidad        = ?,
-                                    precio_unitario = ?,
-                                    descripcion     = ?,
-                                    actualizado_en  = ?
-                                WHERE id = ?
-                                ''', (nombre, categoria, cantidad, precio_unitario, descripcion, datetime.now(),
-                                      id_articulo))
+                UPDATE articulos
+                SET nombre          = ?,
+                categoria       = ?,
+                cantidad        = ?,
+                precio_unitario = ?,
+                descripcion     = ?,
+                actualizado_en  = ?
+                WHERE id = ?
+            ''', (nombre, categoria, cantidad, precio_unitario, descripcion, datetime.now(), id_articulo))
             self.conexion.commit()
             return self.cursor.rowcount > 0
         except sqlite3.Error as e:
@@ -152,9 +153,9 @@ class BaseDeDatos:
         """Registra un nuevo gasto con categoría"""
         try:
             self.cursor.execute('''
-                                INSERT INTO gastos (descripcion, monto, categoria, fecha)
-                                VALUES (?, ?, ?, ?)
-                                ''', (descripcion, monto, categoria, datetime.now()))
+                INSERT INTO gastos (descripcion, monto, categoria, fecha)
+                VALUES (?, ?, ?, ?)
+            ''', (descripcion, monto, categoria, datetime.now()))
             self.conexion.commit()
             return self.cursor.lastrowid
         except sqlite3.Error as e:
@@ -285,14 +286,10 @@ class AplicacionPresupuesto:
         print(f"\n{Fore.GREEN}{Style.BRIGHT}--- REGISTRAR NUEVO ARTÍCULO ---")
 
         try:
-            nombre = self.obtener_entrada_usuario("Nombre del artículo: ", self.validar_no_vacio,
-                                                  "El nombre no puede estar vacío.")
-            categoria = self.obtener_entrada_usuario("Categoría: ", self.validar_no_vacio,
-                                                     "La categoría no puede estar vacía.")
-            cantidad = float(self.obtener_entrada_usuario("Cantidad: ", self.validar_numero_positivo,
-                                                          "La cantidad debe ser un número positivo."))
-            precio_unitario = float(self.obtener_entrada_usuario("Precio unitario: $", self.validar_numero_positivo,
-                                                                 "El precio debe ser un número positivo."))
+            nombre = self.obtener_entrada_usuario("Nombre del artículo: ", self.validar_no_vacio, "El nombre no puede estar vacío.")
+            categoria = self.obtener_entrada_usuario("Categoría: ", self.validar_no_vacio, "La categoría no puede estar vacía.")
+            cantidad = float(self.obtener_entrada_usuario("Cantidad: ", self.validar_numero_positivo, "La cantidad debe ser un número positivo."))
+            precio_unitario = float(self.obtener_entrada_usuario("Precio unitario: $", self.validar_numero_positivo, "El precio debe ser un número positivo."))
             descripcion = input(f"{Fore.WHITE}Descripción (opcional): ")
 
             id_articulo = self.bd.insertar_articulo(nombre, categoria, cantidad, precio_unitario, descripcion)
@@ -427,8 +424,7 @@ class AplicacionPresupuesto:
                 print(f"\n{Fore.YELLOW}No hay artículos para exportar.")
                 return
 
-            nombre_archivo = self.obtener_entrada_usuario("Nombre del archivo (sin extensión): ", self.validar_no_vacio,
-                                                          "El nombre del archivo no puede estar vacío.")
+            nombre_archivo = self.obtener_entrada_usuario("Nombre del archivo (sin extensión): ", self.validar_no_vacio, "El nombre del archivo no puede estar vacío.")
             ruta_archivo = f"{nombre_archivo}.csv"
 
             # Confirmar sobrescritura si el archivo ya existe
@@ -441,12 +437,11 @@ class AplicacionPresupuesto:
                     print(f"\n{Fore.YELLOW}Exportación cancelada.")
                     return
 
-            with open(ruta_archivo, 'w', newline='', encoding='utf-8') as archivo_csv:
+            with open(ruta_archivo, 'w', newline='', encoding='utf-8') as archivo_csv: 
                 escritor_csv = csv.writer(archivo_csv)
 
                 # Escribir encabezados
-                escritor_csv.writerow(
-                    ['ID', 'Nombre', 'Categoría', 'Cantidad', 'Precio Unitario', 'Total', 'Descripción'])
+                escritor_csv.writerow(['ID', 'Nombre', 'Categoría', 'Cantidad', 'Precio Unitario', 'Total', 'Descripción'])
 
                 # Escribir datos
                 for articulo in articulos:
@@ -465,9 +460,7 @@ class AplicacionPresupuesto:
             print(f"\n{Fore.GREEN}✅ Artículos exportados exitosamente a '{ruta_archivo}'")
 
             # Preguntar si desea abrir el archivo
-            abrir = self.obtener_entrada_usuario("¿Desea abrir el archivo exportado? (s/n): ",
-                                                 lambda x: x.lower() in ["s", "n"],
-                                                 "Por favor, responda 's' para sí o 'n' para no.")
+            abrir = self.obtener_entrada_usuario("¿Desea abrir el archivo exportado? (s/n): ",lambda x: x.lower() in ["s", "n"], "Por favor, responda 's' para sí o 'n' para no.")
             if abrir.lower() == "s":
                 try:
                     os.startfile(ruta_archivo)  # Para Windows
@@ -481,12 +474,9 @@ class AplicacionPresupuesto:
         """Registra un nuevo gasto con categoría"""
         print(f"\n{Fore.GREEN}{Style.BRIGHT}--- REGISTRAR GASTO ---")
         try:
-            descripcion = self.obtener_entrada_usuario("Descripción del gasto: ", self.validar_no_vacio,
-                                                       "La descripción no puede estar vacía.")
-            monto = float(self.obtener_entrada_usuario("Monto del gasto: $", self.validar_numero_positivo,
-                                                       "El monto debe ser un número positivo."))
-            categoria = self.obtener_entrada_usuario("Categoría del gasto: ", self.validar_no_vacio,
-                                                     "La categoría no puede estar vacía.")
+            descripcion = self.obtener_entrada_usuario("Descripción del gasto: ", self.validar_no_vacio, "La descripción no puede estar vacía.")
+            monto = float(self.obtener_entrada_usuario("Monto del gasto: $", self.validar_numero_positivo,"El monto debe ser un número positivo."))
+            categoria = self.obtener_entrada_usuario("Categoría del gasto: ", self.validar_no_vacio, "La categoría no puede estar vacía.")
             id_gasto = self.bd.registrar_gasto(descripcion, monto, categoria)
             if id_gasto:
                 print(f"\n{Fore.GREEN}✅ Gasto registrado exitosamente con ID: {id_gasto}")
@@ -517,8 +507,7 @@ class AplicacionPresupuesto:
         """Muestra los gastos filtrados por categoría"""
         print(f"\n{Fore.GREEN}{Style.BRIGHT}--- VER GASTOS POR CATEGORÍA ---")
         try:
-            categoria = self.obtener_entrada_usuario("Ingrese la categoría: ", self.validar_no_vacio,
-                                                     "La categoría no puede estar vacía.")
+            categoria = self.obtener_entrada_usuario("Ingrese la categoría: ", self.validar_no_vacio, "La categoría no puede estar vacía.")
             gastos = self.bd.obtener_gastos_por_categoria(categoria)
             if not gastos:
                 print(f"\n{Fore.YELLOW}No hay gastos registrados en la categoría '{categoria}'.")
@@ -548,8 +537,7 @@ class AplicacionPresupuesto:
             categorias = {}
 
             for gasto in gastos:
-                fecha_obj = datetime.strptime(gasto[4],
-                                              '%Y-%m-%d %H:%M:%S.%f' if '.' in gasto[4] else '%Y-%m-%d %H:%M:%S')
+                fecha_obj = datetime.strptime(gasto[4], '%Y-%m-%d %H:%M:%S.%f' if '.' in gasto[4] else '%Y-%m-%d %H:%M:%S')
                 fechas.append(fecha_obj)
                 montos.append(gasto[2])
 
@@ -574,7 +562,7 @@ class AplicacionPresupuesto:
             labels = list(categorias.keys())
             sizes = list(categorias.values())
             ax2.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-            ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+            ax2.axis('equal')
             ax2.set_title('Distribución de gastos por categoría', fontsize=14)
 
             plt.tight_layout()
