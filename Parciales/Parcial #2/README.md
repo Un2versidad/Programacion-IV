@@ -1,3 +1,5 @@
+<img width="1656" height="602" alt="image" src="https://github.com/user-attachments/assets/36463146-92e2-4ba0-a1a5-70dc843ead2e" />
+
 <div align="center">
   <h1>💉 API de Vacunación contra Sarampión en Panamá</h1>
   <p>API REST para consultar datos históricos de vacunación contra el sarampión en niños de 12 a 23 meses en Panamá (1983-2018)</p>
@@ -9,10 +11,6 @@
 ## 📋 Descripción
 
 Esta API proporciona acceso a datos históricos sobre la cobertura de vacunación contra el sarampión en Panamá, basados en información del Banco Mundial (SH.IMM.MEAS). Construida con **FastAPI**, ofrece endpoints para consultar datos por año o el conjunto completo de registros entre 1983 y 2018.
-
-<div align="center">
-  <img src="https://via.placeholder.com/600x200.png?text=Vacunación+Sarampión+Panamá" alt="Banner" style="border-radius: 10px;">
-</div>
 
 ## 🚀 Características
 
