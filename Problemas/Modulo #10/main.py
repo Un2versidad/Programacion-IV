@@ -197,6 +197,7 @@ def hacer_solicitud(metodo, url, max_intentos=5, **kwargs):
                 raise
             time.sleep(tiempo_espera)
             tiempo_espera = min(tiempo_espera * 2, 5)  # Espera exponencial con límite de 5 segundos
+            
 @app_cliente.route('/')
 def inicio():
     global cache_libros, cache_timestamp  # Mover al inicio de la función
