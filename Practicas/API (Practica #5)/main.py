@@ -7,8 +7,6 @@ res = requests.get(API_URL)
 tit = res.json()[0]['title']
 print(f"Primer título: {tit}")
 print(res.json()[0])
-
-
 print("\nPOST")
 
 nueva_resena = {
@@ -29,7 +27,6 @@ mod_resena = {
 }
 res = requests.put(f"{API_URL}/1", json=mod_resena)
 print(res.json())
-
 
 print("\nDELETE")
 res = requests.delete(f"{API_URL}/1")
